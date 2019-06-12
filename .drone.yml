@@ -25,7 +25,7 @@ pipeline:
       - npm run build
   
   RUN HUB DETECT:
-    image: fabric8/java-alpine-openjdk8-jre
+    image: maven:3.5-alpine
     commands:
       - cd
       - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
