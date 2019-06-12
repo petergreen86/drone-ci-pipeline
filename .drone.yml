@@ -28,6 +28,8 @@ pipeline:
     image: node:8.10
     commands:
       - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
+      - chmod +x hub-detect.sh
+      - ./hub-detect.sh --blackduck.hub.url=https://www.pgreenhub.co.uk --blackduck.hub.username=sysadmin --blackduck.hub.password=Blackduck123$ --blackduck.trust.cert=true
 
   PUBLISH:
     image: node:8.10
