@@ -1,18 +1,12 @@
-pipeline:
- build:
-   image: openjdk
-   commands: 
-     - mvn package -DskipTests=true
-     - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
-     - chmod +x hub-detect.sh
-     - ./hub-detect.sh --blackduck.hub.url=https://www.pgreenhub.co.uk --blackduck.hub.username=sysadmin --blackduck.hub.password=Blackduck123$ --blackduck.trust.cert=true
- test:
-   image: openjdk
-   commands: mvn install
-services:
- database:
-   image: postgres
-   environment:
-     - POSTGRES_USER=db_test_user
-     - POSTGRES_PASSWORD=db_test_password
-     - POSTGRES_DB=my_database
+kind: pipeline
+name: default
+
+steps:
+- name: test
+  image: maven:3-jdk-10
+  commands:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  - mvn test -B
+  - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
+  - chmod +x hub-detect.sh
+  - ./hub-detect.sh --blackduck.hub.url=https://www.pgreenhub.co.uk --blackduck.hub.username=sysadmin --blackduck.hub.password=Blackduck123$ --blackduck.trust.cert=true
