@@ -23,6 +23,10 @@ pipeline:
     image: node:8.10
     commands:
       - npm run build
+  
+  RUN HUB DETECT:
+    commands:
+      - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
 
   PUBLISH:
     image: node:8.10
