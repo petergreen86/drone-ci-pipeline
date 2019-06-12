@@ -25,7 +25,7 @@ pipeline:
       - npm run build
   
   RUN HUB DETECT:
-    image: node:8.10
+    image: 3.3.9-jdk-7
     commands:
       - wget https://blackducksoftware.github.io/hub-detect/hub-detect.sh
       - chmod +x hub-detect.sh
